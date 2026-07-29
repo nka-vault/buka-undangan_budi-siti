@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="UTF-8">
+  <!-- Ini dia mantra ajaibnya, wajib ada! -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Undangan Pernikahan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+    <title>Undangan Pernikahan Budi & Siti</title>
+    
+    <!-- Link Font Estetik dari Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body id="halaman-utama">
+    
+    <!-- SAMPUL DEPAN -->
+    <div class="layar-penuh" id="sampul-depan">
+      <p class="teks-kecil">THE WEDDING OF</p>
+      
+      <!-- GAMBAR DAUN ESTETIK -->
+      <img src="daun.png" alt="Daun Estetik" class="gambar-daun">
+      
+      <h1 class="nama-sampul">Budi & Siti</h1>
+      <p class="garis-tanggal">━━━ Sabtu, 15 Agustus 2026 ━━━</p>
+      <p class="teks-kecil">Kpd Yth:</p>
+      <br><br>
+      <button class="tombol-coklat" onclick="bukaUndangan()">Buka Undangan</button>
+    </div>
+
+    <!-- ISI UTAMA UNDANGAN -->
+    <div class="isi-undangan">
+      
+      <!-- SESI 1: PEMBUKA & PROFIL -->
+      <p class="arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
+      <p class="teks-kecil">Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+      <p class="teks-biasa">Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala, insyaaAllah kami akan menyelenggarakan acara pernikahan:</p>
+      
+    <!-- ======================================= -->
+    <!-- ICON SCROLL MELAYANG (VERSI PRO) -->
+    <!-- ======================================= -->
+    <div class="wadah-scroll">
+      <p class="teks-scroll">SCROLL</p>
+      
+      <!-- Icon Mouse Animasi (INI YANG BIKIN BENTUK MOUSE) -->
+      <div class="mouse-icon">
+        <div class="wheel"></div>
+      </div>
+      
+      <!-- Icon Panah Dobel Turun (INI BIKIN PANAH) -->
+      <div class="panah-bawah">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+       
+     <div class="pasangan-container">
+        <!-- Profil Pria -->
+        <div class="profil animasi-muncul">
+          <div class="bingkai-foto">
+            <!-- Ganti placeholder dengan tag gambar cowok.png -->
+            <img src="cowok.png" alt="Budi" class="foto-mempelai">
+          </div>
+          <h2 class="nama-mempelai">Budi Santoso, S.Kom.</h2>
+          <p class="teks-biasa">Putra dari :<br>Bpk. Hendra Santoso & Ibu Ratna Dewi</p>
+          <!-- Tombol IG Pria -->
+        <button class="tombol-outline" onclick="window.open('https://www.instagram.com/', '_blank')">INSTAGRAM</button>
+        </div>
+
+        <!-- Profil Wanita -->
+        <div class="profil animasi-muncul">
+          <div class="bingkai-foto">
+            <!-- Ganti placeholder dengan tag gambar cewek.png -->
+            <img src="cewek.png" alt="Fumiko" class="foto-mempelai">
+          </div>
+          <h2 class="nama-mempelai">Siti Rahmawati, S.E.</h2>
+          <p class="teks-biasa">Putri dari :<br>Bpk. Ahmad Subagja & Ibu Maryam</p>
+          <!-- Tombol IG Wanita -->
+        <button class="tombol-outline" onclick="window.open('https://www.instagram.com/', '_blank')">INSTAGRAM</button>
+        </div>
+      </div>
+
+      <!-- SESI 2: JADWAL ACARA -->
+      <div class="sesi-acara">
+        <div class="hiasan-daun">❦ ════ ❦ ════ ❦</div>
+        <p class="teks-kecil" style="margin-bottom: 30px;">Yang akan diselenggarakan pada :</p>
+
+        <div class="acara-container">
+          <div class="kartu-acara animasi-muncul">
+            <h2 class="judul-acara">Akad Nikah</h2>
+            <p class="teks-biasa">Sabtu,</p>
+            <div class="angka-tanggal">15</div>
+            <p class="teks-biasa">Agustus 2026<br>08.00 WIB - Selesai</p>
+            <hr class="garis-pemisah">
+            <p class="lokasi-title"><b>Kediaman Mempelai Wanita</b></p>
+            <p class="teks-biasa">Masjid Agung Al-Azhar, Jl. Sisingamangaraja No.1, Kebayoran Baru, Jakarta Selatan</p>
+            <button class="tombol-outline" onclick="window.open('https://maps.app.goo.gl/', '_blank')">📍 OPEN MAPS</button>
+          </div>
+
+          <div class="kartu-acara animasi-muncul">
+            <h2 class="judul-acara">Resepsi</h2>
+            <p class="teks-biasa">Sabtu,</p>
+            <div class="angka-tanggal">15</div>
+            <p class="teks-biasa">Agustus 2026<br>11.00 - 14.00 WIB</p>
+            <hr class="garis-pemisah">
+            <p class="lokasi-title"><b>Grand Ballroom</b></p>
+            <p class="teks-biasa">Gedung Al-Azhar, Kebayoran Baru, Jakarta Selatan</p>
+            <button class="tombol-outline" onclick="window.open('https://maps.app.goo.gl/', '_blank')">📍 OPEN MAPS</button>
+          </div>
+        </div>
+      </div>
+       </div>
+    <!-- ============================== -->
+      <!-- SESI COUNTDOWN (HITUNG MUNDUR) -->
+      <!-- ============================== -->
+      <div class="sesi-countdown">
+        <!-- Kita panggil lagi daun estetiknya biar senada -->
+        <img src="daun.png" alt="Daun Estetik" class="gambar-daun">
+        <h2 class="judul-sesi">Menuju Hari Bahagia</h2>
+        <p class="teks-biasa">Waktu terus berjalan, tak sabar rasanya menanti hari bahagia ini tiba.</p>
+
+        <div class="kotak-waktu-container">
+          <div class="kotak-waktu">
+            <span id="hari">00</span>
+            <p>Hari</p>
+          </div>
+          <div class="kotak-waktu">
+            <span id="jam">00</span>
+            <p>Jam</p>
+          </div>
+          <div class="kotak-waktu">
+            <span id="menit">00</span>
+            <p>Menit</p>
+          </div>
+          <div class="kotak-waktu">
+            <span id="detik">00</span>
+            <p>Detik</p>
+          </div>
+        </div>
+        
+      </div>
+          <!-- SESI GALERI FOTO (Update bagian img-nya kasih onclick) -->
+      <div class="sesi-galeri animasi-muncul">
+        <img src="daun.png" alt="Daun Estetik" class="gambar-daun">
+        <h2 class="judul-sesi">Galeri Cinta Kami</h2>
+        <p class="teks-biasa">Beberapa momen indah yang kami abadikan bersama.</p>
+
+        <div class="galeri-container">
+          <img src="foto1.jpg" class="foto-galeri" alt="Momen 1" onclick="bukaLightbox(this.src)">
+          <img src="foto2.jpg" class="foto-galeri" alt="Momen 2" onclick="bukaLightbox(this.src)">
+          <img src="foto3.jpg" class="foto-galeri" alt="Momen 3" onclick="bukaLightbox(this.src)">
+          <img src="foto4.jpg" class="foto-galeri" alt="Momen 4" onclick="bukaLightbox(this.src)">
+        </div>
+      </div>
+      <!-- ======================================= -->
+    <!-- STRUKTUR POP-UP LIGHTBOX GALERI -->
+    <!-- ======================================= -->
+    <div id="lightbox-modal" class="lightbox" onclick="tutupLightbox()">
+      <span class="lightbox-close">&times;</span>
+      <img class="lightbox-img" id="lightbox-img-terpilih">
+    </div>
+      
+      <!-- SESI 3: KIRIM HADIAH -->
+      <div class="sesi-acara">
+        <div class="hiasan-daun">❦ ════ ❦ ════ ❦</div>
+        <h2 class="judul-acara" style="font-size: 45px; margin-bottom: 10px;">Kirim Hadiah</h2>
+        <p class="teks-biasa" style="margin-bottom: 40px;">
+          Kehadiran dan doa restu anda merupakan karunia yang sangat berharga bagi kami, namun apabila memberi hadiah adalah ungkapan tanda kasih anda, anda dapat mengirimkan ke rekening berikut:
+        </p>
+
+        <div class="acara-container">
+          <div class="kartu-acara" style="max-width: 320px;">
+            <h3 style="color: #0060af; font-size: 28px; font-weight: bold; margin-bottom: 10px; font-style: italic;">DANA</h3>
+            <p class="teks-biasa" style="margin-bottom: 5px;">a.n. Budi Santoso</p>
+            <p id="rekening-1" class="nomor-rekening">081234567890</p>
+            <button class="tombol-salin" onclick="salinRekening('rekening-1', 'btn-1')" id="btn-1">📋 Salin</button>
+          </div>
+
+          <div class="kartu-acara" style="max-width: 320px;">
+            <h3 style="color: #0060af; font-size: 28px; font-weight: bold; margin-bottom: 10px; font-style: italic;">BCA</h3>
+            <p class="teks-biasa" style="margin-bottom: 5px;">a.n. Siti Rahmawati</p>
+            <p id="rekening-2" class="nomor-rekening">1234567890</p>
+            <button class="tombol-salin" onclick="salinRekening('rekening-2', 'btn-2')" id="btn-2">📋 Salin</button>
+          </div>
+        </div>
+
+        <div style="margin-top: 50px; background-color: #faf9f6; border: 1px solid #e8e3dc; padding: 30px; border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto;">
+          <p class="teks-biasa" style="margin-bottom: 10px;">Bagi yang ingin memberikan hadiah kepada pengantin, silahkan dikirim ke alamat berikut :</p>
+          <p class="teks-biasa" style="font-weight: bold; margin-bottom: 5px;">PENERIMA : Budi & Siti</p>
+          <p id="alamat-kado" class="teks-biasa" style="margin-bottom: 20px;">Gedung Al-Azhar, Kebayoran Baru, Jakarta Selatan</p>
+          <button class="tombol-salin" onclick="salinAlamat('alamat-kado', 'btn-alamat')" id="btn-alamat">📋 Salin Alamat</button>
+        </div>
+      </div>
+
+      <!-- SESI 4: UCAPAN & DOA -->
+      <div class="sesi-acara">
+        <div class="hiasan-daun">❦ ════ ❦ ════ ❦</div>
+        <h2 class="judul-acara" style="font-size: 45px; margin-bottom: 10px;">Kirim Ucapan dan Doa</h2>
+        <p class="teks-biasa" style="margin-bottom: 30px;">Berikan ucapan, doa restu, serta konfirmasi kehadiran anda.</p>
+
+        <div class="form-ucapan animasi-muncul">
+          <div class="input-group">
+            <label>Nama</label>
+            <input type="text" id="input-nama" placeholder="Isikan Nama Anda">
+          </div>
+
+          <div class="input-group">
+            <label>Pesan</label>
+            <textarea id="input-pesan" rows="4" placeholder="Berikan Ucapan Dan Doa Restu"></textarea>
+          </div>
+
+          <div class="input-group">
+            <label>Konfirmasi Kehadiran</label>
+            <select id="input-kehadiran">
+              <option value="Hadir">Hadir</option>
+              <option value="Tidak Hadir">Tidak Hadir</option>
+              <option value="Masih Ragu">Masih Ragu</option>
+            </select>
+          </div>
+
+          <button class="tombol-coklat" onclick="kirimUcapan()" style="width: 100%; margin-top: 10px;">KIRIMKAN UCAPAN</button>
+        </div>
+
+        <div class="daftar-ucapan" id="daftar-ucapan">
+          <div class="kartu-komentar">
+            <div class="komentar-header">
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- ========================================== -->
+      <!-- SESI 5: PENUTUP (FOOTER & QS AR-RUM: 21) -->
+      <!-- ========================================== -->
+      <div class="sesi-acara" style="margin-top: 80px; padding-top: 50px;">
+        <div class="hiasan-daun">❦ ════ ❦ ════ ❦</div>
+        
+        <p class="teks-biasa" style="max-width: 600px; margin: 0 auto 20px auto; font-size: 13px;">
+          Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu kepada kami.
+        </p>
+        
+        <p class="teks-biasa" style="max-width: 650px; margin: 0 auto 20px auto; font-style: italic; font-size: 13px;">
+          "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+        </p>
+        
+        <p class="teks-kecil" style="font-weight: 600; margin-bottom: 30px;">Qs. Ar-rum : 21</p>
+        
+        <div style="width: 120px; height: 1px; background-color: #bfa89b; margin: 30px auto; position: relative;">
+          <span style="position: absolute; top: -10px; left: 50px; background-color: #ffffff; padding: 0 5px; color: #7d6558;">❤</span>
+        </div>
+
+        <p class="teks-biasa" style="margin-top: 30px;">Wassalamu'alaikum warahmatullahi wabarakatuh.</p>
+        <p class="teks-kecil" style="margin-top: 20px;">Kami yang berbahagia,</p>
+        <h2 class="nama-mempelai" style="font-size: 35px; margin: 10px 0 30px 0;">Budi & Siti</h2>
+
+        <!-- Tombol Panah Kembali ke Atas -->
+        <div class="tombol-ke-atas" onclick="kembaliKeAtas()" title="Kembali ke atas">
+          <span>︿</span>
+        </div>
+      </div>
+      <!-- BATAS SESI PENUTUP -->
+
+    <!-- AUDIO & KONTROL MUSIK -->
+    <audio id="lagu-latar" loop>
+      <source src="lagu.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="kontrol-musik" class="muter" onclick="aturMusik()">🎵</div>
+
+    <!-- SCRIPT JAVASCRIPT -->
+    <script src="script.js?v=2"></script>
+
+  </body>
+</html>

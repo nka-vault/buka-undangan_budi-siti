@@ -1,0 +1,682 @@
+/* Atur latar belakang dan kunci scroll awal */
+/* --- BACKGROUND DENGAN TEKSTUR KERTAS --- */
+body {
+  /* Memanggil file tekstur kertas sebagai latar belakang */
+  background-image: url('background-kertas.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #faf9f6; /* Warna cadangan kalau gambar gagal dimuat */
+  
+  font-family: 'Montserrat', sans-serif; 
+  color: #5d4a44; 
+  text-align: center;
+  margin: 0;
+  overflow-y: hidden;
+}
+
+/* Sampul depan juga disamakan background-nya */
+.layar-penuh {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('background-kertas.jpg');
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: all 1.2s ease-in-out;
+}
+
+/* --- UKURAN GAMBAR DAUN ESTETIK --- */
+.gambar-daun {
+  width: 50px; /* Atur lebar daun sesuai selera */
+  height: auto;
+  margin-bottom: 5px;
+  opacity: 0.85; /* Bikin sedikit lembut menyatu */
+}
+.tarik-ke-atas {
+  transform: translateY(-100vh);
+}
+
+.nama-sampul {
+  font-family: 'Alex Brush', cursive;
+  font-size: 70px;
+  font-weight: normal;
+  margin: 10px 0;
+  color: #5d4a44;
+}
+
+.teks-kecil {
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin: 5px 0;
+}
+
+.garis-tanggal {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.hiasan-bunga {
+  font-size: 40px;
+  margin-bottom: -10px;
+}
+
+.tombol-coklat {
+  background-color: #7d6558;
+  color: #ffffff;
+  border: none;
+  padding: 12px 30px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tombol-coklat:hover {
+  background-color: #5d4a44;
+}
+
+/* TAMPILAN ISI UTAMA UNDANGAN */
+.isi-undangan {
+  background-color: #ffffff;
+  padding: 80px 20px;
+}
+
+.arab {
+  font-size: 28px;
+  font-weight: bold;
+  color: #5d4a44;
+  margin-bottom: 10px;
+}
+
+.teks-biasa {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5d4a44;
+  max-width: 500px;
+  margin: 0 auto 15px auto;
+}
+
+/* RUMAH PASANGAN BERDAMPINGAN */
+.pasangan-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+.profil {
+  max-width: 320px;
+  margin: 0;
+}
+
+/* Bingkai Foto Kubah */
+.bingkai-foto {
+  width: 180px;
+  height: 220px;
+  margin: 0 auto 15px auto;
+  border-radius: 100px 100px 15px 15px; /* Atas melengkung, bawah agak kotak */
+  background-color: #e8e3dc;
+  overflow: hidden; /* Biar gambar yang keluar batas otomatis terpotong rapi */
+  border: 3px solid #ffffff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+/* Pengaturan Gambar di Dalam Bingkai */
+.foto-mempelai {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Biar gambar pas memenuhi bingkai tanpa gepeng */
+  object-position: top center; /* Fokus potongan di bagian atas (wajah) */
+}
+
+.tombol-outline {
+  background-color: transparent;
+  border: 1px solid #7d6558;
+  color: #7d6558;
+  padding: 8px 25px;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.tombol-outline:hover {
+  background-color: #7d6558;
+  color: #ffffff;
+}
+
+/* GAYA ACARA, HADIAH & UCAPAN */
+.sesi-acara {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid #eee;
+}
+
+.hiasan-daun {
+  color: #7d6558;
+  margin-bottom: 10px;
+  letter-spacing: 5px;
+}
+
+.acara-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.kartu-acara {
+  background-color: #faf9f6;
+  border: 1px solid #e8e3dc;
+  padding: 40px 30px;
+  border-radius: 15px;
+  max-width: 350px;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+}
+
+.judul-acara {
+  font-family: 'Alex Brush', cursive;
+  font-size: 40px;
+  color: #5d4a44;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: normal;
+}
+
+.angka-tanggal {
+  font-size: 60px;
+  font-weight: bold;
+  color: #7d6558;
+  line-height: 1;
+  margin: 15px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.garis-pemisah {
+  border: none;
+  border-top: 1px solid #d4cfc7;
+  margin: 20px 0;
+}
+
+.lokasi-title {
+  font-size: 15px;
+  color: #5d4a44;
+  margin-bottom: 5px;
+}
+
+.nomor-rekening {
+  font-size: 20px;
+  font-weight: bold;
+  color: #5d4a44;
+  letter-spacing: 1px;
+  margin: 10px 0 20px 0;
+}
+
+.tombol-salin {
+  background-color: #7d6558;
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tombol-salin:hover {
+  background-color: #7d6558;
+}
+
+.form-ucapan {
+  background-color: #faf9f6;
+  border: 1px solid #e8e3dc;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5d4a44;
+  margin-bottom: 5px;
+}
+
+.input-group input, 
+.input-group textarea, 
+.input-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d4cfc7;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #5d4a44;
+  box-sizing: border-box;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus, 
+.input-group select:focus {
+  outline: none;
+  border-color: #7d6558;
+}
+
+.daftar-ucapan {
+  max-width: 500px;
+  margin: 30px auto 0 auto;
+  max-height: 400px;
+  overflow-y: auto;
+  text-align: left;
+  padding-right: 5px;
+}
+
+.kartu-komentar {
+  background-color: #faf9f6;
+  border: 1px solid #e8e3dc;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.komentar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.badge-hadir {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.badge-hadir.hadir { background-color: #d4edda; color: #155724; }
+.badge-hadir.tidak-hadir { background-color: #f8d7da; color: #721c24; }
+.badge-hadir.masih-ragu { background-color: #fff3cd; color: #856404; }
+
+.komentar-pesan {
+  font-size: 13px;
+  color: #5d4a44;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ========================================== */
+/* GAYA SESI PENUTUP & TOMBOL KEMBALI KE ATAS */
+/* ========================================== */
+.sesi-penutup {
+  margin-top: 80px;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  border-top: 1px solid #eee;
+  background-color: #faf9f6;
+  border-radius: 20px 20px 0 0;
+}
+
+.tombol-ke-atas {
+  width: 45px;
+  height: 45px;
+  background-color: #7d6558;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  margin: 40px auto 0 auto;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.tombol-ke-atas:hover {
+  background-color: #5d4a44;
+  transform: translateY(-3px);
+}
+
+/* TOMBOL MUSIK MENGAMBANG DI POJOK */
+#kontrol-musik {
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* Jarak kanan 20px */
+  background-color: #7d6558;
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-sizing: border-box; /* WAJIB DITAMBAHIN BIAR PAS */
+  display: none;
+}
+
+.muter {
+  animation: putar-cd 4s linear infinite;
+}
+
+@keyframes putar-cd {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* ========================================= */
+/* --- TAMPILAN KHUSUS HP (RESPONSIVE) --- */
+/* ========================================= */
+
+@media (max-width: 768px) {
+  /* Bikin profil cowok-cewek jadi atas bawah (kolom) di HP */
+  .pasangan-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Jarak antara profil cowok dan cewek */
+  }
+
+  /* Ngecilin ukuran font judul biar gak kegedean di HP */
+  .nama-sampul {
+    font-size: 2.5rem; 
+  }
+
+  /* Ngecilin ukuran font nama profil di HP */
+  .nama-mempelai {
+    font-size: 2rem;
+  }
+}
+/* --- TAMPILAN COUNTDOWN --- */
+.sesi-countdown {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.judul-sesi {
+  font-family: 'Playfair Display', serif; /* Font elegan */
+  font-size: 2rem;
+  color: #5d4a44;
+  margin-bottom: 10px;
+}
+
+.kotak-waktu-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.kotak-waktu {
+  background-color: #5d4a44; /* Warna coklat tema */
+  color: #faf9f6; /* Warna teks krem */
+  padding: 15px 10px;
+  border-radius: 10px;
+  min-width: 60px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.kotak-waktu span {
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+}
+
+.kotak-waktu p {
+  margin: 5px 0 0 0;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Biar aman di layar HP kecil */
+@media (max-width: 400px) {
+  .kotak-waktu-container {
+    gap: 10px;
+  }
+  .kotak-waktu {
+    min-width: 50px;
+    padding: 10px 5px;
+  }
+  .kotak-waktu span {
+    font-size: 1.5rem;
+  }
+}
+/* ========================================= */
+/* --- TAMPILAN GALERI FOTO --- */
+/* ========================================= */
+.sesi-galeri {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: transparent; /* Nyesuaiin background kertas */
+}
+
+.galeri-container {
+  display: grid;
+  /* Kunci rahasia biar di HP jadi 2 kolom, di PC bisa lebih */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px; /* Jarak antar foto */
+  margin-top: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.foto-galeri {
+  width: 100%;
+  height: 200px; /* Tinggi foto diseragamkan */
+  object-fit: cover; /* Biar foto gak gepeng, otomatis kepotong pas */
+  border-radius: 10px; /* Ujung foto melengkung elegan */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ada bayangannya */
+  transition: transform 0.3s ease; /* Transisi halus pas di-hover */
+}
+
+/* Efek pas foto disentuh (HP) / disorot mouse (PC) */
+.foto-galeri:hover {
+  transform: scale(1.05); /* Fotonya nge-zoom dikit */
+}
+/* --- WARNA LABEL KEHADIRAN (BADGE) --- */
+.badge-hadir {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+.hadir {
+  background-color: #d4edda;
+  color: #155724;
+}
+.tidak-hadir {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+.ragu {
+  background-color: #fff3cd;
+  color: #856404;
+}
+/* ========================================= */
+/* --- ICON SCROLL DI ATAS MUSIK (PRESISI) --- */
+/* ========================================= */
+.wadah-scroll {
+  display: none; /* Tetap tersembunyi pas di sampul depan */
+  position: fixed;
+  bottom: 75px; /* Tepat melayang di atas tombol musik (20px + 45px + sisa dikit) */
+  right: 20px;  /* WAJIB SAMA PERSIS DENGAN TOMBOL MUSIK (20px) */
+  width: 45px;  /* WAJIB SAMA PERSIS DENGAN LEBAR TOMBOL MUSIK (45px) */
+  text-align: center;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 6px 0; 
+  border-radius: 22px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+  
+  /* Efek kedip halus */
+  animation: kedipHalus 2s ease-in-out infinite;
+}
+
+.teks-scroll {
+  font-size: 6px; 
+  letter-spacing: 0.5px;
+  color: #7d6558; 
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.mouse-icon {
+  width: 12px; 
+  height: 22px;
+  border: 2px solid #7d6558;
+  border-radius: 8px;
+  margin: 0 auto 2px auto;
+  position: relative;
+}
+
+.wheel {
+  width: 2px;
+  height: 4px;
+  background-color: #7d6558;
+  border-radius: 2px;
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollRoda 1.5s infinite;
+}
+
+.panah-bawah span {
+  display: block;
+  width: 5px; 
+  height: 5px;
+  border-bottom: 2px solid #7d6558;
+  border-right: 2px solid #7d6558;
+  transform: rotate(45deg);
+  margin: -2px auto;
+  animation: panahTurun 1.5s infinite;
+}
+
+.panah-bawah span:nth-child(2) {
+  animation-delay: -0.2s;
+}
+
+/* MESIN ANIMASI */
+@keyframes kedipHalus {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes scrollRoda {
+  0% { top: 2px; opacity: 1; }
+  100% { top: 10px; opacity: 0; }
+}
+
+@keyframes panahTurun {
+  0% { opacity: 0; transform: rotate(45deg) translate(-2px, -2px); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(45deg) translate(2px, 2px); }
+}
+/* ========================================= */
+/* --- ANIMASI SCROLL REVEAL (FADE IN) --- */
+/* ========================================= */
+
+/* Kondisi awal sebelum kelihatan di layar: Transparan dan turun dikit */
+.animasi-muncul {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Kondisi pas elemennya udah masuk ke layar (diset lewat Javascript nanti) */
+.animasi-muncul.tampil {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ========================================= */
+/* --- FITUR LIGHTBOX GALERI (POP-UP) --- */
+/* ========================================= */
+
+/* Efek pas kursor diarahkan ke foto galeri */
+.foto-galeri {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.foto-galeri:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Kotak Gelap Layar Penuh (Modal) */
+.lightbox {
+  display: none; /* Tersembunyi default */
+  position: fixed;
+  z-index: 99999; /* Paling atas di atas segalanya */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Hitam pekat elegan */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Gambar yang diperbesar di tengah */
+.lightbox-img {
+  max-width: 90%;
+  max-height: 85vh;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.7);
+  object-fit: contain;
+}
+
+/* Tombol Silang (Close) di Pojok Kanan Atas */
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #ffffff;
+  font-size: 45px;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 100000;
+  transition: 0.2s;
+}
+
+.lightbox-close:hover {
+  color: #d4a373; /* Berubah jadi warna coklat/emas tema */
+}
