@@ -127,7 +127,7 @@ function kembaliKeAtas() {
 }
 // --- FITUR HITUNG MUNDUR (COUNTDOWN) ---
 // Ganti tanggal di bawah sesuai hari H pernikahan (Bulan Tanggal, Tahun Jam:Menit:Detik)
-const tanggalPernikahan = new Date("Aug 15, 2026 08:00:00").getTime();
+const tanggalPernikahan = new Date("Dec 12, 2026 08:00:00").getTime();
 
 const hitungMundur = setInterval(function() {
   const sekarang = new Date().getTime();
@@ -175,7 +175,7 @@ function kirimUcapan() {
   tombolKirim.disabled = true;
 
   // Link Web App Google Script lu
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxb7y8tdbCT9QPCWxPaM5a4MMbL2b8-h_aRp2lj24NWFIbpDyFFyhwgvI-8omDxcvnFIw/exec';
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxqCTZbBAHjj-MeGHQYa3Sm6gIgYCsjr8a3lRQ73GyuWBV-mLjR9zHsZm6h02I9sSerrQ/exec';
   
   // Susun data yang mau dikirim
   const data = new URLSearchParams();
@@ -238,7 +238,7 @@ function kirimUcapan() {
 // ==========================================
 
 // Masukin Link API lu yang tadi
-const URL_API_GOOGLE = 'https://https://script.google.com/macros/s/AKfycbxb7y8tdbCT9QPCWxPaM5a4MMbL2b8-h_aRp2lj24NWFIbpDyFFyhwgvI-8omDxcvnFIw/exec';
+const URL_API_GOOGLE = 'https://script.google.com/macros/s/AKfycbzpBX39otw-6r5PHU-_axaTlRoUn6URoacH5VpZyeOBQMIQqC-QloJDM6o3eTovY5urpg/exec';
 
 // Jalankan fungsi ini otomatis pas web selesai loading
 window.addEventListener('load', function() {
