@@ -3,27 +3,32 @@ let ikonMusik = document.getElementById("kontrol-musik");
 let lagiMuter = true;
 let undanganDibuka = false;
 
-// Fungsi saat tombol "Buka Undangan" diklik
+// ==========================================
+// URL API GOOGLE APPS SCRIPT (Satu URL Utama)
+// ==========================================
+const URL_API_GOOGLE = 'https://script.google.com/macros/s/AKfycbxd6JYqowBupJtPuObnrGAfPWbqQcHzaB7oHHQGcrl9GNf4fg0JE5htfZigM6kDjl_CLA/exec';
+
+// ==========================================
+// 1. FUNGSI UTAMA UNDANGAN & MUSIK
+// ==========================================
 function bukaUndangan() {
   let sampul = document.getElementById("sampul-depan");
   let body = document.getElementById("halaman-utama");
-  document.querySelector('.wadah-scroll').style.display = 'block';
-
-  sampul.classList.add("tarik-ke-atas");
-  body.style.overflowY = "auto";
+  let wadahScroll = document.querySelector('.wadah-scroll');
+  
+  if (wadahScroll) wadahScroll.style.display = 'block';
+  if (sampul) sampul.classList.add("tarik-ke-atas");
+  if (body) body.style.overflowY = "auto";
+  
   undanganDibuka = true;
 
-  if (musik) {
-    musik.play();
-  }
-  
-  if (ikonMusik) {
-    ikonMusik.style.display = "flex"; 
-  }
+  if (musik) musik.play();
+  if (ikonMusik) ikonMusik.style.display = "flex"; 
 }
 
-// Fungsi kontrol Pause/Play musik di pojok
 function aturMusik() {
+  if (!musik || !ikonMusik) return;
+  
   if (lagiMuter) {
     musik.pause(); 
     ikonMusik.classList.remove("muter"); 
@@ -36,7 +41,7 @@ function aturMusik() {
 
 // Fitur Auto-Pause saat pindah tab browser
 document.addEventListener("visibilitychange", function() {
-  if (undanganDibuka) {
+  if (undanganDibuka && musik && ikonMusik) {
     if (document.hidden) {
       musik.pause();
       ikonMusik.classList.remove("muter");
@@ -49,142 +54,103 @@ document.addEventListener("visibilitychange", function() {
   }
 });
 
-// Fitur Salin Rekening
+// ==========================================
+// 2. FITUR SALIN REKENING & ALAMAT
+// ==========================================
 function salinRekening(idRekening, idTombol) {
-  let teksNomor = document.getElementById(idRekening).innerText;
-  navigator.clipboard.writeText(teksNomor);
-
+  let elemRek = document.getElementById(idRekening);
   let tombol = document.getElementById(idTombol);
+  if (!elemRek || !tombol) return;
+
+  navigator.clipboard.writeText(elemRek.innerText);
+
   let teksAsli = tombol.innerText;
-  
   tombol.innerText = "✅ Berhasil Disalin!";
   setTimeout(function() {
     tombol.innerText = teksAsli;
   }, 2000);
 }
 
-// Fitur Salin Alamat
 function salinAlamat(idAlamat, idTombol) {
-  let teksAlamat = document.getElementById(idAlamat).innerText;
-  navigator.clipboard.writeText(teksAlamat);
-
+  let elemAlamat = document.getElementById(idAlamat);
   let tombol = document.getElementById(idTombol);
+  if (!elemAlamat || !tombol) return;
+
+  navigator.clipboard.writeText(elemAlamat.innerText);
+
   let teksAsli = tombol.innerText;
-  
   tombol.innerText = "✅ Alamat Berhasil Disalin!";
   setTimeout(function() {
     tombol.innerText = teksAsli;
   }, 2000);
 }
 
-// Fitur Kirim Ucapan & Kehadiran
-function kirimUcapan() {
-  let nama = document.getElementById("input-nama").value.trim();
-  let pesan = document.getElementById("input-pesan").value.trim();
-  let kehadiran = document.getElementById("input-kehadiran").value;
-
-  if (nama === "" || pesan === "") {
-    alert("Mohon isi Nama dan Pesan terlebih dahulu ya!");
-    return;
-  }
-
-  let daftar = document.getElementById("daftar-ucapan");
-
-  let kelasBadge = "hadir";
-  if (kehadiran === "Tidak Hadir") {
-    kelasBadge = "tidak-hadir";
-  } else if (kehadiran === "Masih Ragu") {
-    kelasBadge = "masih-ragu";
-  }
-
-  let kartuBaru = document.createElement("div");
-  kartuBaru.classList.add("kartu-komentar");
-
-  kartuBaru.innerHTML = `
-    <div class="komentar-header">
-      <strong>${nama}</strong>
-      <span class="badge-hadir ${kelasBadge}">${kehadiran}</span>
-    </div>
-    <p class="komentar-pesan">${pesan}</p>
-  `;
-
-  daftar.prepend(kartuBaru);
-
-  document.getElementById("input-nama").value = "";
-  document.getElementById("input-pesan").value = "";
-
-  alert("Terima kasih! Ucapan dan konfirmasi kehadiran Anda berhasil dikirim.");
-}
-
-// ==========================================
-// FITUR BARU: TOMBOL KEMBALI KE ATAS
-// ==========================================
 function kembaliKeAtas() {
   window.scrollTo({
     top: 0,
-    behavior: "smooth" // Efek geser pelan-pelan ke atas
+    behavior: "smooth"
   });
 }
-// --- FITUR HITUNG MUNDUR (COUNTDOWN) ---
-// Ganti tanggal di bawah sesuai hari H pernikahan (Bulan Tanggal, Tahun Jam:Menit:Detik)
-const tanggalPernikahan = new Date("Dec 12, 2026 08:00:00").getTime();
+
+// ==========================================
+// 3. FITUR HITUNG MUNDUR (COUNTDOWN)
+// ==========================================
+const tanggalPernikahan = new Date("2026-08-15T08:00:00").getTime();
 
 const hitungMundur = setInterval(function() {
   const sekarang = new Date().getTime();
   const selisih = tanggalPernikahan - sekarang;
 
-  // Rumus matematika kalkulasi waktu
   const hari = Math.floor(selisih / (1000 * 60 * 60 * 24));
   const jam = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const menit = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
   const detik = Math.floor((selisih % (1000 * 60)) / 1000);
 
-  // Lempar hasilnya ke HTML
-  document.getElementById("hari").innerHTML = hari;
-  document.getElementById("jam").innerHTML = jam;
-  document.getElementById("menit").innerHTML = menit;
-  document.getElementById("detik").innerHTML = detik;
+  if (document.getElementById("hari")) document.getElementById("hari").innerHTML = hari;
+  if (document.getElementById("jam")) document.getElementById("jam").innerHTML = jam;
+  if (document.getElementById("menit")) document.getElementById("menit").innerHTML = menit;
+  if (document.getElementById("detik")) document.getElementById("detik").innerHTML = detik;
 
-  // Aksi kalau waktu sudah habis (hari H tiba)
   if (selisih < 0) {
     clearInterval(hitungMundur);
-    document.getElementById("hari").innerHTML = "00";
-    document.getElementById("jam").innerHTML = "00";
-    document.getElementById("menit").innerHTML = "00";
-    document.getElementById("detik").innerHTML = "00";
+    if (document.getElementById("hari")) document.getElementById("hari").innerHTML = "00";
+    if (document.getElementById("jam")) document.getElementById("jam").innerHTML = "00";
+    if (document.getElementById("menit")) document.getElementById("menit").innerHTML = "00";
+    if (document.getElementById("detik")) document.getElementById("detik").innerHTML = "00";
   }
-}, 1000); // Mesin berdetak setiap 1000 milidetik (1 detik)
+}, 1000);
+
 // ==========================================
-// --- FITUR KIRIM UCAPAN (KE GOOGLE SHEETS) ---
+// 4. FITUR KIRIM UCAPAN (KE GOOGLE SHEETS)
 // ==========================================
 function kirimUcapan() {
-  // Ambil data dari kolom input
-  const nama = document.getElementById('input-nama').value;
-  const pesan = document.getElementById('input-pesan').value;
-  const kehadiran = document.getElementById('input-kehadiran').value;
+  const inputNama = document.getElementById('input-nama');
+  const inputPesan = document.getElementById('input-pesan');
+  const inputKehadiran = document.getElementById('input-kehadiran');
 
-  // Cek kalau nama atau pesan masih kosong
+  if (!inputNama || !inputPesan) return;
+
+  const nama = inputNama.value.trim();
+  const pesan = inputPesan.value.trim();
+  const kehadiran = inputKehadiran ? inputKehadiran.value : 'Hadir';
+
   if (nama === '' || pesan === '') {
     alert('Nama dan pesan ucapan harus diisi dulu ya!');
     return;
   }
 
-  // Ambil tombol buat diubah teksnya jadi loading
   const tombolKirim = document.querySelector('.tombol-coklat[onclick="kirimUcapan()"]');
-  tombolKirim.innerHTML = 'MENGIRIM... ⏳';
-  tombolKirim.disabled = true;
+  if (tombolKirim) {
+    tombolKirim.innerHTML = 'MENGIRIM... ⏳';
+    tombolKirim.disabled = true;
+  }
 
-  // Link Web App Google Script lu
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxqCTZbBAHjj-MeGHQYa3Sm6gIgYCsjr8a3lRQ73GyuWBV-mLjR9zHsZm6h02I9sSerrQ/exec';
-  
-  // Susun data yang mau dikirim
   const data = new URLSearchParams();
   data.append('nama', nama);
   data.append('pesan', pesan);
   data.append('kehadiran', kehadiran);
 
-  // Proses kirim ke Google Sheets
-  fetch(scriptURL, {
+  fetch(URL_API_GOOGLE, {
     method: 'POST',
     body: data,
     headers: {
@@ -193,89 +159,88 @@ function kirimUcapan() {
   })
   .then(response => response.text())
   .then(result => {
-    // Balikin tombol kayak semula
-    tombolKirim.innerHTML = 'KIRIMKAN UCAPAN';
-    tombolKirim.disabled = false;
+    if (tombolKirim) {
+      tombolKirim.innerHTML = 'KIRIMKAN UCAPAN';
+      tombolKirim.disabled = false;
+    }
 
-    // --- FITUR NAMPILIN KOMENTAR LANGSUNG ---
     const tempatUcapan = document.getElementById('daftar-ucapan');
-    
-    // Nentuin warna badge sesuai pilihan kehadiran
-    let kelasBadge = 'hadir';
-    if (kehadiran === 'Tidak Hadir') kelasBadge = 'tidak-hadir';
-    if (kehadiran === 'Masih Ragu') kelasBadge = 'ragu';
+    if (tempatUcapan) {
+      let kelasBadge = 'hadir';
+      if (kehadiran === 'Tidak Hadir') kelasBadge = 'tidak-hadir';
+      if (kehadiran === 'Masih Ragu') kelasBadge = 'ragu';
 
-    // Bikin elemen kartu komentar baru
-    const kartuKomentarBaru = `
-      <div class="kartu-komentar">
-        <div class="komentar-header">
-          <strong>${nama}</strong>
-          <span class="badge-hadir ${kelasBadge}">${kehadiran}</span>
+      const kartuKomentarBaru = `
+        <div class="kartu-komentar">
+          <div class="komentar-header">
+            <strong>${nama}</strong>
+            <span class="badge-hadir ${kelasBadge}">${kehadiran}</span>
+          </div>
+          <p class="komentar-pesan">${pesan}</p>
         </div>
-        <p class="komentar-pesan">${pesan}</p>
-      </div>
-    `;
-    
-    // Masukin komentar baru ke posisi paling atas
-    tempatUcapan.insertAdjacentHTML('afterbegin', kartuKomentarBaru);
+      `;
+      tempatUcapan.insertAdjacentHTML('afterbegin', kartuKomentarBaru);
+    }
 
-    // Bersihin form setelah sukses terkirim
-    document.getElementById('input-nama').value = '';
-    document.getElementById('input-pesan').value = '';
-    document.getElementById('input-kehadiran').value = 'Hadir';
+    inputNama.value = '';
+    inputPesan.value = '';
+    if (inputKehadiran) inputKehadiran.value = 'Hadir';
 
     alert('Yeay! Ucapan dan doa restu berhasil dikirim!');
   })
   .catch(error => {
     console.error('Error!', error.message);
-    tombolKirim.innerHTML = 'KIRIMKAN UCAPAN';
-    tombolKirim.disabled = false;
+    if (tombolKirim) {
+      tombolKirim.innerHTML = 'KIRIMKAN UCAPAN';
+      tombolKirim.disabled = false;
+    }
     alert('Waduh, gagal ngirim nih. Pastikan internet lancar dan coba lagi ya!');
   });
 }
-// ==========================================
-// --- FITUR BACA UCAPAN SAAT WEB DIBUKA ---
-// ==========================================
 
-// Masukin Link API lu yang tadi
-const URL_API_GOOGLE = 'https://script.google.com/macros/s/AKfycbzpBX39otw-6r5PHU-_axaTlRoUn6URoacH5VpZyeOBQMIQqC-QloJDM6o3eTovY5urpg/exec';
-
-// Jalankan fungsi ini otomatis pas web selesai loading
+// ==========================================
+// 5. FITUR BACA UCAPAN SAAT WEB DIBUKA
+// ==========================================
 window.addEventListener('load', function() {
   ambilDataUcapan();
 });
 
 function ambilDataUcapan() {
   const tempatUcapan = document.getElementById('daftar-ucapan');
-  
-  // Munculin teks loading sementara
+  if (!tempatUcapan) return;
+
   tempatUcapan.innerHTML = '<p style="text-align:center; font-family: sans-serif; font-size: 14px;">Memuat doa dan ucapan...</p>';
 
-  // Proses tarik data dari Google Sheets
   fetch(URL_API_GOOGLE)
     .then(response => response.json())
     .then(data => {
-      // Bersihkan teks loading
       tempatUcapan.innerHTML = '';
 
-      // Balik urutan data biar komentar paling baru ada di paling atas
-      data.reverse().forEach(item => {
-        let kelasBadge = 'hadir';
-        if (item.kehadiran === 'Tidak Hadir') kelasBadge = 'tidak-hadir';
-        if (item.kehadiran === 'Masih Ragu') kelasBadge = 'ragu';
+      if (!data || data.length === 0) {
+        tempatUcapan.innerHTML = '<p style="text-align:center; font-size: 13px; color: #777;">Belum ada ucapan. Jadilah yang pertama!</p>';
+        return;
+      }
 
-        // Bikin struktur HTML buat tiap komentar
+      data.reverse().forEach(item => {
+        // Ambil data array [Nama, Kehadiran, Pesan] atau fallback ke Object
+        const nama = item[0] || item.nama || 'Anonim';
+        const kehadiran = item[1] || item.kehadiran || 'Hadir';
+        const pesan = item[2] || item.pesan || '-';
+
+        let kelasBadge = 'hadir';
+        if (kehadiran === 'Tidak Hadir') kelasBadge = 'tidak-hadir';
+        if (kehadiran === 'Masih Ragu') kelasBadge = 'ragu';
+
         const kartuKomentar = `
           <div class="kartu-komentar">
             <div class="komentar-header">
-              <strong>${item.nama}</strong>
-              <span class="badge-hadir ${kelasBadge}">${item.kehadiran}</span>
+              <strong>${nama}</strong>
+              <span class="badge-hadir ${kelasBadge}">${kehadiran}</span>
             </div>
-            <p class="komentar-pesan">${item.pesan}</p>
+            <p class="komentar-pesan">${pesan}</p>
           </div>
         `;
         
-        // Masukin ke dalam daftar
         tempatUcapan.insertAdjacentHTML('beforeend', kartuKomentar);
       });
     })
@@ -283,50 +248,47 @@ function ambilDataUcapan() {
       console.error('Error!', error);
       tempatUcapan.innerHTML = '<p style="text-align:center; color: red;">Gagal memuat ucapan.</p>';
     });
-} 
+}
+
 // ==========================================
-// --- MESIN PENGGERAK ANIMASI SCROLL REVEAL ---
+// 6. SCROLL REVEAL & LIGHTBOX
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
   const pilihanObserver = {
     root: null,
     rootMargin: "0px",
-    threshold: 0.15 // Animasi bakal jalan kalau elemen udah nampak 15% di layar HP
+    threshold: 0.15
   };
 
-  const observer = new IntersectionObserver(function(entries, observer) {
+  const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('tampil'); // Tambahin kelas 'tampil'
-        // observer.unobserve(entry.target); // (Opsional) Biar animasinya cuma main sekali tiap di-scroll
+        entry.target.classList.add('tampil');
       }
     });
   }, pilihanObserver);
 
-  // Daftarkan semua elemen yang punya kelas 'animasi-muncul'
   const targetAnimasi = document.querySelectorAll('.animasi-muncul');
   targetAnimasi.forEach(el => {
     observer.observe(el);
   });
 });
-// ==========================================
-// --- FUNGSI BUKA & TUTUP LIGHTBOX GALERI ---
-// ==========================================
+
 function bukaLightbox(srcGambar) {
   const lightbox = document.getElementById('lightbox-modal');
   const gambarModal = document.getElementById('lightbox-img-terpilih');
   
-  lightbox.style.display = 'block';
-  gambarModal.src = srcGambar;
-  
-  // Kunci scroll background web utama biar gak ikut gerak-gerik
-  document.body.style.overflow = 'hidden';
+  if (lightbox && gambarModal) {
+    lightbox.style.display = 'block';
+    gambarModal.src = srcGambar;
+    document.body.style.overflow = 'hidden';
+  }
 }
 
 function tutupLightbox() {
   const lightbox = document.getElementById('lightbox-modal');
-  lightbox.style.display = 'none';
-  
-  // Kembalikan fungsi scroll web utama
-  document.body.style.overflow = 'auto';
+  if (lightbox) {
+    lightbox.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
 }
